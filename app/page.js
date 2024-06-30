@@ -11,7 +11,7 @@ export default function Home() {
         backgroundAttachment: "fixed"
       }}>
 
-      <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">Rosululloh <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span>  Hadislari top&apos;lami</h1>
+      <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">Rosululloh <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span>  Hadislari toplami</h1>
       <label className="input input-bordered flex items-center gap-2 bg-white input-accent w-full lg:w-1/2">
         <input type="text" className="grow input-bordered input-accent input-sm " placeholder="Search" />
         <svg
