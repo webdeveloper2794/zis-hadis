@@ -15,6 +15,7 @@ export default function page() {
         <button className="btn btn-outline btn-success">Kitob qo'shish</button>
       </div>
 
+
       <div className="flex flex-wrap justify-between w-2/3 border-solid border-2 border-sky-500/50 p-6 rounded-md shadow-md mb-4 bg-white/75">
         <select className="select select-success w-full max-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 ">
           <option disabled selected>
