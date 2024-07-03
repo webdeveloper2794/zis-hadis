@@ -12,7 +12,7 @@ export default function page() {
           placeholder="Kitob nomi arabcha"
           className="input input-bordered input-accent w-full max-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900"
         />
-        <button className="btn btn-outline btn-success">Kitob qo'shish</button>
+        <button className="btn btn-outline btn-success">Kitob qoshish</button>
       </div>
 
 
@@ -27,14 +27,14 @@ export default function page() {
           <option>Attack on Titan</option>
           <option>Bleach</option>
           <option>Fullmetal Alchemist</option>
-          <option>Jojo's Bizarre Adventure</option>
+          <option>Jojos Bizarre Adventure</option>
         </select>
         <textarea
           className="textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900"
           placeholder="Kitob Biografiyasini qo'shing"
         ></textarea>
         <button className="btn btn-outline btn-success">
-          Kitob biografiyasini qo'shish
+          Kitob biografiyasini qoshish
         </button>
       </div>
  {/* ===============================================Bo'limlarni qo'shish========================= */}
@@ -49,7 +49,7 @@ export default function page() {
           <option>Attack on Titan</option>
           <option>Bleach</option>
           <option>Fullmetal Alchemist</option>
-          <option>Jojo's Bizarre Adventure</option>
+          <option>Jojos Bizarre Adventure</option>
         </select>
         <input
           type="number"
@@ -78,7 +78,7 @@ export default function page() {
         />
 
         <button className="btn btn-outline btn-success mb-2">
-          Kitob Bolimlarini qo'shish
+          Kitob Bolimlarini qoshish
         </button>
       </div>
 
@@ -94,11 +94,11 @@ export default function page() {
           <option>Attack on Titan</option>
           <option>Bleach</option>
           <option>Fullmetal Alchemist</option>
-          <option>Jojo's Bizarre Adventure</option>
+          <option>Jojos Bizarre Adventure</option>
         </select>
         <select className="select select-success w-full max-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 mb-2">
           <option disabled selected>
-            Bo'lim nomini tanlang
+            Bolim nomini tanlang
           </option>
           <option>One Piece</option>
           <option>Naruto</option>
@@ -106,7 +106,7 @@ export default function page() {
           <option>Attack on Titan</option>
           <option>Bleach</option>
           <option>Fullmetal Alchemist</option>
-          <option>Jojo's Bizarre Adventure</option>
+          <option>Jojos Bizarre Adventure</option>
         </select>
         <input
           type="number"
@@ -147,7 +147,7 @@ export default function page() {
         ></textarea>
         <input
           type="number"
-          placeholder="Bo'lim raqami"
+          placeholder="Bolim raqami"
           className="input input-bordered input-accent  max-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 mb-2"
         />
         <input
@@ -156,7 +156,7 @@ export default function page() {
           className="input input-bordered input-accent  max-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 mb-2"
         />
         <button className="btn btn-outline btn-success mb-2">
-          Bobga tegishli hadislarni qo'shish
+          Bobga tegishli hadislarni qoshish
         </button>
       </div>
     </main>
