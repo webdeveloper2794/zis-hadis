@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Link from 'next/link';
-const Books = () => {
+const  Books = () => {
     const books = [
         { id: 1, title_uzb: 'Sahih al-Bukhari', title_arabic: 'صحيح البخاري', author: 'Imam al-Bukhari', link: '/bukhari' },
         { id: 2, title_uzb: 'Sahih Muslim', title_arabic: 'صحيح مسلم', author: 'Imam Muslim', link: '/muslim' },
