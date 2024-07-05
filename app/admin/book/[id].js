@@ -1,5 +1,6 @@
 import AdminLayout from "@/components/AdminLayout/AdminLayout";
-import Link fron "next/link";
+import Link from "next/link";
+import from from './../../../.next/server/app/_not-found/page';
 const BookDetails = () => {
   // const router = useRouter();
   // const { id } = router.query;
