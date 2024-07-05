@@ -25,16 +25,16 @@ const  Books = () => {
     };
     return (
         <div className="container mx-auto xl:px-40 py-10 ">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {books.map(book => (
                     <Link key={book.id} href={book.link}>
                         <div className="relative group">
                             <div
-                                className="flex justify-between p-2 bg-green-500/50  border border-green-300 rounded-lg shadow-md cursor-pointer transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-lg px-10"
+                                className="flex justify-between p-2 bg-white border hover:border-2  rounded-sm shadow-lg cursor-pointer transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-lg px-10"
                                 onClick={() => handleBookClick(book.id)}
                             >
                                 <h2 className="text-green-900 font-serif text-lg font-extralight mb-2">{book.title_uzb}</h2>
-                                <p className="text-green-900 font-serif text-lg font-semibold mb-2">{book.title_arabic}</p>
+                                <p className="text-green-900 font-serif text-xl font-semibold mb-2">{book.title_arabic}</p>
                                 
                             </div>
                             <div className="absolute top-0 left-0 w-full h-full bg-green-100 opacity-0 transition-opacity duration-300 group-hover:opacity-25 rounded-lg"></div>

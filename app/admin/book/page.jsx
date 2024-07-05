@@ -1,8 +1,4 @@
-"use client"
-import AdminLayout from "@/components/AdminLayout/AdminLayout";
 import Link from "next/link";
-import { FaEdit } from "react-icons/fa";
-import { CiSquareRemove } from "react-icons/ci";
 export default function page() {
   const books = [
     {
@@ -148,48 +144,24 @@ export default function page() {
         "Mishkat al-Masabih is a collection of hadith compiled by Imam Bukhari.",
     },
   ];
-  const handleEdit = (bookId) => {
-    // Navigate to the edit book page
-    // router.push(`/admin/book/edit/${bookId}`);
-  };
-  const handleRemove = (bookId) => {
-    // Navigate to the edit book page
-    // router.push(`/admin/book/edit/${bookId}`);
-  };
   return (
     <>
-      <div>
       <h1 className="text-2xl font-bold mb-6">Books</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-green-900">
         {books.map((book) => (
           <div key={book._id} className="bg-white p-4 rounded shadow">
-            <div className="flex justify-between items-center mb-2">
-              <h2 className="text-xl font-bold">{book.title_uzb} / {book.title_arabic}</h2>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => handleEdit(book._id)}
-                  className="text-blue-500 hover:text-blue-700"
-                >
-                  <FaEdit  className="text-lg"/>
-                </button>
-                <button
-                  onClick={() => handleRemove(book._id)}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  <CiSquareRemove className="text-lg" />
-                </button>
-              </div>
-            </div>
+            <h2 className="text-xl font-bold mb-2">
+              {book.title_uzb} / {book.title_arabic}
+            </h2>
             <p>{book.biography}</p>
             <div className="mt-4">
-              <Link href={`/admin/book/${book._id}`} className="text-blue-500 hover:underline">
-                Manage Chapters
+              <Link href={`/admin/book/${book._id}`}  className="text-blue-500">
+               Manage Chapters
               </Link>
             </div>
           </div>
         ))}
       </div>
-    </div>
-      </>
+    </>
   );
 }
