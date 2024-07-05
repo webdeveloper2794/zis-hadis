@@ -1,5 +1,4 @@
 "use client"
-import AdminLayout from "@/components/AdminLayout/AdminLayout";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
 import { CiSquareRemove } from "react-icons/ci";
@@ -159,8 +158,8 @@ export default function page() {
   return (
     <>
       <div>
-      <h1 className="text-2xl font-bold mb-6">Books</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-green-900">
+      <h1 className="text-2xl font-bold mb-6 text-green-900">Books</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-green-800">
         {books.map((book) => (
           <div key={book._id} className="bg-white p-4 rounded shadow">
             <div className="flex justify-between items-center mb-2">
