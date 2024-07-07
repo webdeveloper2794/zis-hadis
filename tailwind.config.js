@@ -17,4 +17,14 @@ module.exports = {
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          'primary': '#22c55e', // Set the primary color to green-500
+          'tab-active': '#afe3bd', // Set the active tab color
+        },
+      },
+    ],
+  },
 };

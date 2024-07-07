@@ -33,8 +33,8 @@ const  Books = () => {
                                 className="flex justify-between p-2 bg-white border hover:border-2  rounded-sm shadow-lg cursor-pointer transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-lg px-10"
                                 onClick={() => handleBookClick(book.id)}
                             >
-                                <h2 className="text-green-900 font-serif text-lg font-extralight mb-2">{book.title_uzb}</h2>
-                                <p className="text-green-900 font-serif text-xl font-semibold mb-2">{book.title_arabic}</p>
+                                <h2 className="text-green-600 font-serif text-base font-extralight mb-2">{book.title_uzb}</h2>
+                                <p className="text-green-600 font-serif text-xl font-semibold mb-2">{book.title_arabic}</p>
                                 
                             </div>
                             <div className="absolute top-0 left-0 w-full h-full bg-green-100 opacity-0 transition-opacity duration-300 group-hover:opacity-25 rounded-lg"></div>
