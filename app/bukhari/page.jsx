@@ -643,15 +643,22 @@ const page = () => {
     //   console.log(chapter5.content); // Output: "Chapter Content for Ghusl..."
 
     return (
-        <div className='py-20 px-4 bg-transparent'>
-        <div className="overflow-x-auto">
+        <div className='py-20 px-4 bg-transparent rounded-md'>
+            <div className='bg-green-100 p-6 shadow-xl max-w-screen-lg'>
+                <header className=' text-gray-600 flex justify-between py-2'>
+                    <h1 className='font-semibold text-gray-950'>Sahih al-Bukhari</h1>
+                    <h1 className='font-semibold text-gray-950'>صحيح البخاري</h1>
+                </header>
+                <p className='text-gray-700 text-sm'>Sahih al-Bukhari is a collection of hadith compiled by Imam Muhammad al-Bukhari (d. 256 AH/870 AD) (rahimahullah). His collection is recognized by the overwhelming majority of the Muslim world to be the most authentic collection of reports of the Sunnah of the Prophet Muhammad (ﷺ). It contains over 7500 hadith (with repetitions) in 97 books. The translation provided here is by Dr. M. Muhsin Khan.</p>
+            </div>
+        <div className="overflow-x-auto py-10 max-w-screen-lg m-auto" >
           <table className="table bg-transparent">
             <thead>
               <tr>
                 <th className="text-green-900 text-lg font-semibold hover:text-green-500">#</th>
-                <th className='text-lg font-semibold'>Bob</th>
-                <th className='text-lg font-semibold'>باب</th>
-                <th className='text-lg font-semibold'>Betlar</th>
+                <th className='text-lg text-green-900 font-semibold'>Bob</th>
+                <th className='text-lg text-green-900 font-semibold'>باب</th>
+                <th className='text-lg text-green-900 font-semibold'>Betlar</th>
               </tr>
             </thead>
             <tbody>

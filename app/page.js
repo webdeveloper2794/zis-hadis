@@ -10,12 +10,12 @@ export default function Home() {
       }}>
 
       <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">Rosululloh <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span>  Hadislari top&apos;lami</h1>
-      <label className="input input-bordered flex items-center gap-2 bg-white input-accent w-full lg:w-1/2 ">
-        <input type="text" className="grow input-bordered input-accent input-sm text-green-900 focus:border-none" placeholder="Search" />
+      <label className="input input-bordered flex items-center gap-2 bg-green-100 shadow-xl input-accent w-full lg:w-1/2 ">
+        <input type="text" className="grow input-bordered input-accent input-sm  text-green-900 " placeholder="Search" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
-          fill="currentColor"
+          fill="green"
           className="h-4 w-4 opacity-70">
           <path
             fillRule="evenodd"
