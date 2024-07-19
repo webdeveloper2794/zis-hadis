@@ -676,8 +676,7 @@ const page = () => {
                   <td className='text-green-900 text-lg font-semibold'>
                   <Link href={`/bukhari/${chapter.id}`} className="text-green-900 text-lg font-semibold hover:text-green-500">
                   {chapter.title_arabic}
-                    </Link>
-                   
+                    </Link>                   
                     </td>
                   <td className='text-green-900'>{chapter.range}</td>
                 </tr>
