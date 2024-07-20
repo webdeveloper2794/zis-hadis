@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { FaEdit } from "react-icons/fa";
-import { CiSquareRemove } from "react-icons/ci";
+import { MdDeleteSweep } from "react-icons/md";
+
 import { useRouter } from "next/navigation";
 export default function Page() {
   const [books, setBooks] = useState([]);
@@ -34,17 +35,21 @@ export default function Page() {
 
 
   const handleRemove = async (bookId) => {
-    try {
-      const response = await axios.delete(`/api/books`, {
-        data: { id: bookId }, // Include the book ID in the request body
-      });
-      if (response.status === 200) {
-        setBooks(books.filter(book => book._id !== bookId));
-        alert("Kitob muvaffaqiyatli o'chirildi!");
+    const confirmDelte=confirm("Bu kitobni o'chirishga aminmisiz?");
+    if(confirmDelte){
+      try {
+        const response = await axios.delete(`/api/books`, {
+          data: { id: bookId }, // Include the book ID in the request body
+        });
+        if (response.status === 200) {
+          setBooks(books.filter(book => book._id !== bookId));
+          alert("Kitob muvaffaqiyatli o'chirildi!");
+        }
+      } catch (error) {
+        console.error("Kitobni o'chirishda xatolik yuz berdi:", error);
       }
-    } catch (error) {
-      console.error("Kitobni o'chirishda xatolik yuz berdi:", error);
     }
+    
   };
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading books</div>;
@@ -71,36 +76,20 @@ export default function Page() {
                       <FaEdit className="text-lg" />
                     </button>
                   </div>
-                  <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box">
-                      <h3 className="font-bold text-lg">Diqqat!</h3>
-                      <p className="py-4">Bu kitobni o'chirishga aminmisiz?</p>
-                      <div className="modal-action">
-                        <form method="dialog">
-                          <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:bg-red-700 hover:text-white">✕</button>
-                          </form>
-                          {/* if there is a button in form, it will close the modal */}
-                          <button className="btn text-red-500 hover:bg-red-700 hover:text-white" onClick={() => handleRemove(book._id)}>Ok</button>
-                        </form>
-                      </div>
-                    </div>
-                  </dialog>
+                  
                   <div className="lg:tooltip" data-tip="Remove">
                     <button
-                      // onClick={() => handleRemove(book._id)}
-                      onClick={() => document.getElementById('my_modal_5').showModal()}
+                      onClick={() => handleRemove(book._id)}
                       className=" text-red-500 hover:text-red-700"
                     >
-                      <CiSquareRemove className="text-xl" />
+                      <MdDeleteSweep className="text-xl" />
                     </button>
                   </div>
 
 
                 </div>
               </div>
-              <p className="text-sm">{book.biography}</p>
+              {/* <p className="text-sm">{book.biography}</p> */}
               <div className="mt-4">
                 <Link href={`/admin/book/${book._id}/chapter`} className="text-green-500 hover:underline">
                   Manage Chapters

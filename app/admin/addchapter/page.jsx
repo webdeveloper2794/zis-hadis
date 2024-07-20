@@ -1,12 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 export default function Page() {
   const [titleUz, setTitleUz] = useState("");
   const [titleAr, setTitleAr] = useState("");
-  const [chapterNumber, setChapterNumber] = useState(null);
-  const [endPage, setEndPage] = useState(null);
-  const [startPage, setStartPage] = useState(null);
+  const [chapterNumber, setChapterNumber] = useState("");
+  const [endPage, setEndPage] = useState("");
+  const [startPage, setStartPage] = useState("");
   const [books, setBooks] = useState([]);
   const [selectedBookId, setSelectedBookId] = useState("");
   const [loading, setLoading] = useState(true);
@@ -44,31 +45,31 @@ export default function Page() {
         // Clear the form fields after successful submission
         setTitleUz("");
         setTitleAr("");
-        setChapterNumber(null);
-        setEndPage(null);
-        setStartPage(null);
-        setSelectedBookId("");
-        alert("Bo'lim muvaffaqiyatli qo'shildi!");
+        setChapterNumber("");
+        setEndPage("");
+        setStartPage("");
+        toast.success("Bo'lim muvaffaqiyatli qo'shildi!");
       }
     } catch (error) {
+      toast.error("Kitobni qo'shishda xatolik yuz berdi!");
       console.error("Kitobni qo'shishda xatolik yuz berdi:", error);
     }
   };
 
   useEffect(() => {
     const fetchBooks = async () => {
-        try {
-            const response = await axios.get("/api/books");
-            setBooks(response.data.books);
-            setLoading(false);
-        } catch (error) {
-            setError(error);
-            setLoading(false);
-        }
+      try {
+        const response = await axios.get("/api/books");
+        setBooks(response.data.books);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
     };
 
     fetchBooks();
-}, []);
+  }, []);
   return (
     <main className="flex w-full  flex-col items-center pt-10 p-2">
       <h1 className="text-2xl text-green-900 font-bold mb-6">Add Chapter</h1>
@@ -77,21 +78,21 @@ export default function Page() {
         onSubmit={handleChapterSubmit}
       >
         <select className="select select-success w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2" defaultValue="" onChange={(e) => setSelectedBookId(e.target.value)}
-        required>
+          required>
           <option disabled value="">
-          Kitob nomini tanlang
-        </option>
-        {loading ? (
-          <option>Loading...</option>
-        ) : error ? (
-          <option>Error loading books</option>
-        ) : (
-          books.map((book) => (
-            <option key={book._id} value={book._id}>
-              {book.title_uzb} / {book.title_arabic}
-            </option>
-          ))
-        )}
+            Kitob nomini tanlang
+          </option>
+          {loading ? (
+            <option>Loading...</option>
+          ) : error ? (
+            <option>Error loading books</option>
+          ) : (
+            books.map((book) => (
+              <option key={book._id} value={book._id}>
+                {book.title_uzb} / {book.title_arabic}
+              </option>
+            ))
+          )}
         </select>
         <input
           type="text"
@@ -114,7 +115,7 @@ export default function Page() {
           value={titleAr}
           onChange={handleArTitleChange}
         />
-        
+
         <input
           type="number"
           placeholder="Bet boshlanish raqami"

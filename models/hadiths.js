@@ -9,16 +9,16 @@ const HadithSchema = new mongoose.Schema(
     },
     subChapterNumber: {
       type: Number,
-      required: true,
+      required: false,
     },
     subChapterTitle: {
       uz: {
         type: String,
-        required: true,
+        required: false,
       },
       ar: {
         type: String,
-        required: true,
+        required: false,
       },
     },
     arabic_ayah: {
@@ -27,12 +27,12 @@ const HadithSchema = new mongoose.Schema(
     },
     narratorName: {
       type: String,
-      required: true,
+      required: false,
     },
     hadith: {
       arabic: {
         type: String,
-        required: true,
+        required: false,
       },
       uzbek: {
         type: String,
@@ -49,11 +49,11 @@ const HadithSchema = new mongoose.Schema(
     },
     hadithNumber: {
       type: Number,
-      required: true,
+      required: false,
     },
     reference: {
       type: String,
-      required: true,
+      required: false,
     },
     accuracy: {
       type: String,

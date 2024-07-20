@@ -1,16 +1,18 @@
-//chapte update page
-
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-export default function Page() {
+import { useRouter } from 'next/navigation'
+import { toast } from "react-toastify";
+//chapte update page================================================================
+export default function Page({ params }) {
+  const router = useRouter();
+
+  const { id, chapterId } = params;
   const [titleUz, setTitleUz] = useState("");
   const [titleAr, setTitleAr] = useState("");
   const [chapterNumber, setChapterNumber] = useState(null);
   const [endPage, setEndPage] = useState(null);
   const [startPage, setStartPage] = useState(null);
-  const [books, setBooks] = useState([]);
-  const [selectedBookId, setSelectedBookId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -32,45 +34,49 @@ export default function Page() {
   };
   const handleChapterSubmit = async (e) => {
     e.preventDefault();
-    const newChapter = {
-      bookId: selectedBookId,
-      title_uz: titleUz,
-      title_ar: titleAr,
-      chapterNumber: Number(chapterNumber),
-      startPage: Number(startPage),
-      endPage: Number(endPage),
-    };
     try {
-      const response = await axios.post("/api/chapters", newChapter);
-      if (response.status === 201) {
-        // Clear the form fields after successful submission
-        setTitleUz("");
-        setTitleAr("");
-        setChapterNumber(null);
-        setEndPage(null);
-        setStartPage(null);
-        setSelectedBookId("");
-        alert("Bo'lim muvaffaqiyatli qo'shildi!");
+      const updatedChapter = {
+        bookId:id,
+        title_uz: titleUz,
+        title_ar: titleAr,
+        chapterNumber: Number(chapterNumber),
+        startPage: Number(startPage),
+        endPage: Number(endPage),
+      };
+      const response = await axios.put(`/api/chapters/${chapterId}`, updatedChapter);
+      if (response.status === 200) {
+        toast.success("Muvaffaqiyyatli yangilandi!");
+        router.push(`/admin/book/${id}/chapter`);
       }
     } catch (error) {
-      console.error("Kitobni qo'shishda xatolik yuz berdi:", error);
+      toast.error("Hatolik yuz berdi!");
+      console.error("Error updating chapter:", error);
     }
   };
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    if (chapterId) {
+      // Fetch book data when the component mounts or id changes
+      const fetchBookData = async () => {
         try {
-            const response = await axios.get("/api/books");
-            setBooks(response.data.books);
-            setLoading(false);
+          const response = await axios.get(`/api/chapters/${chapterId}`);
+          const chapter = response.data.chapter;
+          setTitleUz(chapter.title_uz);
+          setTitleAr(chapter.title_ar);
+          setChapterNumber(chapter.chapterNumber);
+          setEndPage(chapter.startPage);
+          setStartPage(chapter.endPage);
+          // setSelectedBookId(chapter.bookId);
         } catch (error) {
-            setError(error);
-            setLoading(false);
+          toast.error("Hatolik yuz berdi!");
+          console.error('Error fetching book data:', error);
         }
-    };
+      };
+      fetchBookData();
+    }
+  }, [chapterId]);
 
-    fetchBooks();
-}, []);
+  
   return (
     <main className="flex w-full  flex-col items-center pt-10 p-2">
       <h1 className="text-2xl text-green-900 font-bold mb-6">Edit Chapter</h1>
@@ -78,45 +84,28 @@ export default function Page() {
         className="flex flex-wrap justify-between w-full mb-4 border-solid  p-6 rounded-md shadow-xl  bg-white/75"
         onSubmit={handleChapterSubmit}
       >
-        <select className="select select-success w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2" defaultValue="" onChange={(e) => setSelectedBookId(e.target.value)}
-        required>
-          <option disabled value="">
-          Kitob nomini tanlang
-        </option>
-        {loading ? (
-          <option>Loading...</option>
-        ) : error ? (
-          <option>Error loading books</option>
-        ) : (
-          books.map((book) => (
-            <option key={book._id} value={book._id}>
-              {book.title_uzb} / {book.title_arabic}
-            </option>
-          ))
-        )}
-        </select>
         <input
           type="text"
-          placeholder="Bo\'lim raqami"
+          placeholder="Bo'lim raqami"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           value={chapterNumber}
           onChange={handleChapterChange}
         />
         <input
           type="text"
-          placeholder="Bo\'lim nomi o\'zbekcha"
+          placeholder="Bo'lim nomi o'zbekcha"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           value={titleUz}
           onChange={handleUzTitleChange}
         />
         <input
           type="text"
-          placeholder="Bo\'lim nomi arabcha"
+          placeholder="Bo'lim nomi arabcha"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           value={titleAr}
           onChange={handleArTitleChange}
         />
-        
+
         <input
           type="number"
           placeholder="Bet boshlanish raqami"

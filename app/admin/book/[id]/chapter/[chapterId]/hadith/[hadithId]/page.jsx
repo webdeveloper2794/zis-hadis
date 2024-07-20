@@ -2,7 +2,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-export default function Page() {
+import { useRouter } from "next/navigation";
+
+// Hadith Edit Page =======================================
+export default function Page({ params }) {
+  const router = useRouter();
+  const { id, chapterId, hadithId } = params;
+  console.log('%c%s', 'color: #00b300', JSON.stringify(hadithId));
   const [formData, setFormData] = useState({
     titleUz: "",
     titleAr: "",
@@ -17,30 +23,9 @@ export default function Page() {
     reference: "",
     accuracy: "",
     source: "",
-    selectedChapterId: "",
   });
-  const [books, setBooks] = useState([]);
-  const [chapters, setChapters] = useState([]);
-  const [selectedBookId, setSelectedBookId] = useState("");
   const [loading, setLoading] = useState(true);
-  const [loadingBooks, setLoadingBooks] = useState(true);
-  const [loadingChapters, setLoadingChapters] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get("/api/books");
-        setBooks(response.data.books);
-        setLoadingBooks(false);
-      } catch (error) {
-        setError(error);
-        setLoadingBooks(false);
-      }
-    };
-
-    fetchBooks();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,29 +33,41 @@ export default function Page() {
       ...formData,
       [name]: value,
     });
-
-    if (name === "selectedBookId") {
-      fetchChapters(value); // Fetch chapters when book is selected
-      setSelectedBookId(value);
-    }
   };
 
-  const fetchChapters = async (bookId) => {
-    try {
-      setLoadingChapters(true);
-      const response = await axios.get(`/api/chapters?bookId=${bookId}`);
-      setChapters(response.data.chapters);
-      setLoadingChapters(false);
-    } catch (error) {
-      setError(error);
-      setLoadingChapters(false);
-    }
-  };
+  useEffect(() => {
+    const fetchHadith = async () => {
+      try {
+        const response = await axios.get(`/api/hadiths/${hadithId}`);
+        const hadith = response.data.hadith;
+        setFormData({
+          titleUz: hadith.subChapterTitle.uz,
+          titleAr: hadith.subChapterTitle.ar,
+          subChapterNumber: hadith.subChapterNumber,
+          arabicAyah: hadith.arabic_ayah,
+          narratorName: hadith.narratorName,
+          hadithArabic: hadith.hadith.arabic,
+          hadithUzbek: hadith.hadith.uzbek,
+          hadithEnglish: hadith.hadith.english,
+          hadithKril: hadith.hadith.kril,
+          hadithNumber: hadith.hadithNumber,
+          reference: hadith.reference,
+          accuracy: hadith.accuracy,
+          source: hadith.source,
+        });
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+    fetchHadith();
+  }, [hadithId]);
 
   const handleHadithSubmit = async (e) => {
     e.preventDefault();
-    const newHadith = {
-      chapterId: formData.selectedChapterId,
+    const updatedHadith = {
+      chapterId: chapterId,
       subChapterNumber: Number(formData.subChapterNumber),
       subChapterTitle: {
         uz: formData.titleUz,
@@ -90,90 +87,40 @@ export default function Page() {
       source: formData.source,
     };
     try {
-      const response = await axios.post("/api/hadiths", newHadith);
-      if (response.status === 201) {
-        // Clear the form fields after successful submission
-        setFormData({
-          titleUz: "",
-          titleAr: "",
-          subChapterNumber: "",
-          arabicAyah: "",
-          narratorName: "",
-          hadithArabic: "",
-          hadithUzbek: "",
-          hadithEnglish: "",
-          hadithKril: "",
-          hadithNumber: "",
-          reference: "",
-          accuracy: "",
-          source: "",
-        });
-        toast.success("Hadis muvaffaqiyyatli qo'shildi!");
+      const response = await axios.put(`/api/hadiths/${hadithId}`, updatedHadith);
+      if (response.status === 200) {
+        toast.success("Hadis muvaffaqiyatli yangilandi!");
+        router.push(`/admin/book/${id}/chapter/${chapterId}/hadith`);
       }
     } catch (error) {
-      toast.error("Hadis qo'shishda hatolik yuz berdi!");
-      console.error("Error adding hadith:", error);
+      toast.error("Hadisni yangilashda hatolik yuz berdi!");
+      console.error("Error updating hadith:", error);
     }
   };
   return (
     <main className="flex w-full  flex-col items-center pt-10 p-2">
-      <h1 className="text-2xl text-green-900 font-bold mb-6">Add Hadith</h1>
+      <h1 className="text-2xl text-green-900 font-bold mb-6">Edit Hadith</h1>
       <form
         className="flex flex-wrap justify-between w-full mb-4 border-solid  p-6 rounded-md shadow-xl  bg-white/75"
         onSubmit={handleHadithSubmit}
       >
-        <select
-        className="select select-success w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-        name="selectedBookId"
-        value={formData.selectedBookId || ""}
-        onChange={handleChange}
-        required
-      >
-        <option disabled value="">
-          Select a book
-        </option>
-        {loadingBooks ? (
-          <option>Loading books...</option>
-        ) : error ? (
-          <option>Error loading books</option>
-        ) : (
-          books.map((book) => (
-            <option key={book._id} value={book._id}>
-              {book.title_uzb} / {book.title_arabic}
-            </option>
-          ))
-        )}
-      </select>
-        <select
-        className="select select-success w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-        name="selectedChapterId"
-        value={formData.selectedChapterId}
-        onChange={handleChange}
-        required
-      >
-        <option disabled value="">
-          Select a chapter
-        </option>
-        {loadingChapters ? (
-          <option>Loading chapters...</option>
-        ) : error ? (
-          <option>Error loading chapters</option>
-        ) : (
-          chapters && chapters.map((chapter) => (
-            <option key={chapter._id} value={chapter._id}>
-              {chapter.title_uz} / {chapter.title_ar}
-            </option>
-          ))
-        )}
-      </select>
-        <input
-          type="number"
-          name="subChapterNumber"
-          placeholder="Bob raqami"
-          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-          value={formData.subChapterNumber}
-          onChange={handleChange}
-        />
+        <label class="form-control w-full max-w-xs ">
+          <div class="label">
+            <span class="label-text text-gray-500 ">Bob raqami</span>
+          </div>
+          <input
+            type="number"
+            name="subChapterNumber"
+            placeholder="Bob raqami"
+            className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+            value={formData.subChapterNumber}
+            onChange={handleChange}
+          />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500 ">Bob o'zbekcha nomi</span>
+          </div>
         <input
           type="text"
           name="titleUz"
@@ -182,6 +129,12 @@ export default function Page() {
           value={formData.titleUz}
           onChange={handleChange}
         />
+        </label>
+
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500  ">Bob arabcha nomi</span>
+          </div>
         <input
           type="text"
           name="titleAr"
@@ -190,6 +143,11 @@ export default function Page() {
           value={formData.titleAr}
           onChange={handleChange}
         />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Oyatdan dalil</span>
+          </div>
         <input
           type="text"
           name="arabicAyah"
@@ -198,6 +156,11 @@ export default function Page() {
           value={formData.arabicAyah}
           onChange={handleChange}
         />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Rivoyat qiluvchi</span>
+          </div>
         <input
           type="text"
           name="narratorName"
@@ -206,6 +169,11 @@ export default function Page() {
           value={formData.narratorName}
           onChange={handleChange}
         />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis o'zbekcha</span>
+          </div>
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           placeholder="Ozbekcha Hadis matni"
@@ -213,6 +181,11 @@ export default function Page() {
           value={formData.hadithUzbek}
           onChange={handleChange}
         ></textarea>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis kirilcha</span>
+          </div>
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           placeholder="Kirilcha Hadis matni"
@@ -220,6 +193,11 @@ export default function Page() {
           name="hadithKril"
           onChange={handleChange}
         ></textarea>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis arabcha</span>
+          </div>
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           placeholder="Arabcha Hadis matni"
@@ -227,6 +205,11 @@ export default function Page() {
           value={formData.hadithArabic}
           onChange={handleChange}
         ></textarea>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis Inglizcha</span>
+          </div>
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           placeholder="Inglizcha Hadis matni"
@@ -234,14 +217,11 @@ export default function Page() {
           value={formData.hadithEnglish}
           onChange={handleChange}
         ></textarea>
-        {/* <input
-          type="number"
-          placeholder="Bolim raqami"
-          className="input input-bordered input-accent  min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-          name="subChapterNumber"
-          value={formData.subChapterNumber}
-          onChange={handleChange}
-        /> */}
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis raqami</span>
+          </div>
         <input
           type="number"
           placeholder="Hadis raqami"
@@ -250,7 +230,12 @@ export default function Page() {
           value={formData.hadithNumber}
           onChange={handleChange}
         />
-         <input
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis reference i</span>
+          </div>
+        <input
           type="text"
           placeholder="Reference"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
@@ -258,7 +243,12 @@ export default function Page() {
           name="reference"
           onChange={handleChange}
         />
-         <input
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis sanadi</span>
+          </div>
+        <input
           type="text"
           name="accuracy"
           placeholder="Sanadi"
@@ -266,7 +256,13 @@ export default function Page() {
           value={formData.accuracy}
           onChange={handleChange}
         />
-         <input
+        </label>
+
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Hadis manbasi</span>
+          </div>
+        <input
           type="text"
           name="source"
           placeholder="Hadis manbasi"
@@ -274,6 +270,7 @@ export default function Page() {
           value={formData.source}
           onChange={handleChange}
         />
+        </label>
         <button
           className="shadow-lg m-2 btn btn-outline btn-success bg-green-500"
           style={{ color: "white" }}

@@ -56,7 +56,7 @@ export default function Page({ params }) {
       const response = await axios.put('/api/books', updatedBook);
       if (response.status === 200) {
         alert('Kitob muvaffaqiyatli yangilandi!');
-        router.push('/books'); // Redirect to the books list page
+       
       }
     } catch (error) {
       console.error('Kitobni yangilashda xatolik yuz berdi:', error);
