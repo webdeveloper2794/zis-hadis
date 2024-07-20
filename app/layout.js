@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/navbar";
 import Footer from "@/components/Footer/footer";
-
+import ToastProvider from "@/libs/ToastProvider/provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-[#ebfcef]`}>
         <div className="min-h-screen  flex items-center flex-col justify-between">
           <Navbar />
-          {children}
+          <ToastProvider>{children}</ToastProvider>          
           <Footer />
         </div>
       </body>
