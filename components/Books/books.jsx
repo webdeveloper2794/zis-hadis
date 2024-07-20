@@ -3,30 +3,31 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 
-const  Books = () => {
-    const [books, setBooks] = useState([]);
-    const [loading, setLoading] = useState(true);
+const  Books = ({ books }) => {
+    console.log('%c%s', 'color: #f200e2', JSON.stringify(books));
+    // const [books, setBooks] = useState([]);
+    // const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                const response = await axios.get("/api/books");
-                setBooks(response.data.books);
-                setLoading(false);
-            } catch (error) {
-                setError(error);
-                setLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchBooks = async () => {
+    //         try {
+    //             const response = await axios.get("/api/books");
+    //             setBooks(response.data.books);
+    //             setLoading(false);
+    //         } catch (error) {
+    //             setError(error);
+    //             setLoading(false);
+    //         }
+    //     };
 
-        fetchBooks();
-    }, []);
+    //     fetchBooks();
+    // }, []);
     
     const handleBookClick = (bookId) => {
         // router.push(`/books/${bookId}`);
     };
-    if (loading) return <div>Loading...</div>;
+    // if (loading) return <div>Loading...</div>;
     if (error) return <div>Error loading books</div>;
     return (
         <div className="container mx-auto xl:px-40 py-10 ">

@@ -19,6 +19,9 @@ const AdminLayout = ({ children }) => {
             <Link href="/admin/addhadith" className="px-4  text-sm">
               Add Hadith
             </Link>
+            <Link href="/admin/errorreport" className="px-4  text-sm">
+              Error page
+            </Link>
           </nav>
         </div>
       </header>

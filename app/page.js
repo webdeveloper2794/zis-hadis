@@ -1,5 +1,25 @@
+"use client"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Books from "@/components/Books/books";
 export default function Home() {
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get("/api/books");
+        setBooks(response.data.books);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchBooks();
+  }, []);
   return (
     <main className="flex w-full min-h-screen  flex-col items-center  bg-[#ebfcef] pt-16 p-6"
       style={{
@@ -23,7 +43,7 @@ export default function Home() {
             clipRule="evenodd" />
         </svg>
       </label>
-      <Books />
+      <Books books={books}/>
 
     </main>
   );
