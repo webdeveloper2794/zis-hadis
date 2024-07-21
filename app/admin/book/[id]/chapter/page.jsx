@@ -1,6 +1,6 @@
 //chapter list page
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect, useState,useCallback  } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { FaEdit } from "react-icons/fa";
@@ -9,28 +9,27 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { HiChevronRight } from "react-icons/hi";
 const Page = ({ params }) => {
     const { id } = params;
-    console.log('%c%s', 'color: #0088cc', id);
     const [chapters, setChapters] = useState([]);
     const [error, setError] = useState(null);
     const [loadingChapters, setLoadingChapters] = useState(false);
 
-    const fetchChapters = async () => {
+    const fetchChapters = useCallback(async () => {
         try {
             setLoadingChapters(true);
             const response = await axios.get(`/api/chapters?bookId=${id}`);
             setChapters(response.data.chapters);
-            setLoadingChapters(false);
         } catch (error) {
             setError(error);
+        } finally {
             setLoadingChapters(false);
         }
-    };
+    }, [id]);
+
     useEffect(() => {
         if (id) {
-            // Fetch book data when the component mounts or id changes          
             fetchChapters();
         }
-    }, [id]);
+    }, [id, fetchChapters]);
 
     const handleRemove = async (chapterId) => {
         const confirmDelte = confirm("Bu bo'limni o'chirishga aminmisiz?");
@@ -55,7 +54,7 @@ const Page = ({ params }) => {
     if (loadingChapters) return <div className="min-h-screen flex justify-center items-center">
         <span className="loading loading-ring loading-lg text-green-500 mt-32"></span>
     </div>;
-    if (error) return <div className="m-auto bg-transparent mt-32 text-red-500 text-xl text-center flex items-center justify-center font-semibold">Kitob bo'limlarini yuklashda hatolik yuz berdi !</div>;
+    if (error) return <div className="m-auto bg-transparent mt-32 text-red-500 text-xl text-center flex items-center justify-center font-semibold">Kitob bo&apos;limlarini yuklashda hatolik yuz berdi !</div>;
     return (
         <div className='py-20 px-4 bg-transparent rounded-md'>
 

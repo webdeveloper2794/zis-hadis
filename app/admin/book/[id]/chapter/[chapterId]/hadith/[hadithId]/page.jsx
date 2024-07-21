@@ -119,7 +119,7 @@ export default function Page({ params }) {
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text text-gray-500 ">Bob o'zbekcha nomi</span>
+            <span class="label-text text-gray-500 ">Bob o&apos;zbekcha nomi</span>
           </div>
         <input
           type="text"
@@ -172,11 +172,11 @@ export default function Page({ params }) {
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text text-gray-500">Hadis o'zbekcha</span>
+            <span class="label-text text-gray-500">Hadis o&apos;zbekcha</span>
           </div>
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-          placeholder="Ozbekcha Hadis matni"
+          placeholder="O'zbekcha Hadis matni"
           name="hadithUzbek"
           value={formData.hadithUzbek}
           onChange={handleChange}

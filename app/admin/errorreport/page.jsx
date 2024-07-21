@@ -65,7 +65,7 @@ const Page = () => {
     if (loadingChapters) return <div className="min-h-screen flex justify-center items-center">
         <span className="loading loading-ring loading-lg text-green-500 mt-32"></span>
     </div>;
-    if (error) return <div className="m-auto bg-transparent mt-32 text-red-500 text-xl text-center flex items-center justify-center font-semibold">Kitob bo'limlarini yuklashda hatolik yuz berdi !</div>;
+    if (error) return <div className="m-auto bg-transparent mt-32 text-red-500 text-xl text-center flex items-center justify-center font-semibold">Kitob bo&apos;limlarini yuklashda hatolik yuz berdi !</div>;
     return (
         <div className='py-20 px-4 bg-transparent rounded-md'>
 
