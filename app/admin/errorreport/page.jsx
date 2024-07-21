@@ -57,7 +57,6 @@ const Page = () => {
                 console.error("Error deleting chapter:", error);
                 setLoadingChapters(false);
             }
-
         }
     };
 
