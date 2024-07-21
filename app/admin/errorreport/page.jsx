@@ -70,7 +70,7 @@ const Page = () => {
 <h1 className="text-center text-lg text-green-900 capitalize">error report page</h1>
             <div className="overflow-x-auto py-8 max-w-screen-lg m-auto" >
                 {errorReport.map((error, index) => (
-                    <main className='bg-white shadow-xl p-2 text-left w-full rounded-md my-4'>
+                    <main className='bg-white shadow-xl p-2 text-left w-full rounded-md my-4' key={error._id}>
                         <Link href={`/admin/book/${error.bookId}/chapter/${error.chapterId}/hadith/${error.hadithId}`} >
                             <button className="btn btn-outline btn-success  group mx-2"><FaEdit className="group-hover:text-white" /></button>
                         </Link>
