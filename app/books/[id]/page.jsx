@@ -36,8 +36,9 @@ const Page = ({ params }) => {
 
     if (error) return <div className="m-auto bg-transparent mt-32 text-red-500 text-xl text-center flex items-center justify-center font-semibold">Kitob bo&apos;limlarini yuklashda hatolik yuz berdi !</div>;
     return (
-        <div className='py-20 px-4 bg-transparent rounded-md'>
-            <div className='bg-green-100 p-6 shadow-xl max-w-screen-lg'>
+        <div className='py-20 px-4 bg-transparent rounded-md w-full min-h-screen'>
+            <div className='bg-green-100 p-6 shadow-xl max-w-screen-lg m-auto rounded-md'>
+                                
                 <header className=' text-gray-600 flex justify-between py-2'>
                     <h1 className='font-semibold text-gray-950'>{book.title_uzb}</h1>
                     <h1 className='font-semibold text-gray-950'>{book.title_arabic}</h1>
@@ -48,10 +49,10 @@ const Page = ({ params }) => {
                 <table className="table bg-transparent">
                     <thead>
                         <tr>
-                            <th className="text-green-900 text-lg font-semibold hover:text-green-500">#</th>
-                            <th className='text-lg text-green-900 font-semibold'>Bob</th>
-                            <th className='text-lg text-green-900 font-semibold'>باب</th>
-                            <th className='text-lg text-green-900 font-semibold'>Betlar</th>
+                            <th className="text-green-900/50 font-normal text-lg  hover:text-green-500">#</th>
+                            <th className='text-lg text-green-900/50 font-normal'>Bob</th>
+                            <th className='text-lg text-green-900/50 font-normal text-right'>باب</th>
+                            <th className='text-lg text-green-900/50 font-normal text-right'>Betlar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,16 +63,16 @@ const Page = ({ params }) => {
                             >
                                 <td className='text-green-900'>{chapter.chapterNumber}</td>
                                 <td>
-                                    <Link href={`/books/${id}/chapters/${chapter._id}`} className="text-green-900 text-lg font-semibold hover:text-green-500">
+                                    <Link href={`/books/${id}/chapters/${chapter._id}`} className="text-green-900 text-sm md:text-lg font-semibold hover:text-green-500">
                                         {chapter.title_uz}
                                     </Link>
                                 </td>
-                                <td className='text-green-900 text-lg font-semibold'>
-                                    <Link href={`/books/${id}/chapters/${chapter._id}`} className="text-green-900 text-lg font-semibold hover:text-green-500">
+                                <td className='text-green-900 text-sm md:text-lg font-semibold  text-right'>
+                                    <Link href={`/books/${id}/chapters/${chapter._id}`} className="text-green-900 text-sm md:text-lg font-semibold hover:text-green-500">
                                         {chapter.title_ar}
                                     </Link>
                                 </td>
-                                <td className='text-green-900'>{chapter.startPage}-{chapter.endPage}</td>
+                                <td className='text-green-900 text-right'>{chapter.startPage}-{chapter.endPage}</td>
                             </tr>
                         ))}
                     </tbody>
