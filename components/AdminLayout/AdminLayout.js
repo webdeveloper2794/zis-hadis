@@ -9,7 +9,6 @@ const AdminLayout = ({ children }) => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
   return (
     <div className="min-h-screen flex flex-col pt-16 w-full p-0">
       <header className="bg-green-100 w-full text-gray-700 py-4 fixed z-50">
