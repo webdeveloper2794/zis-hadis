@@ -116,7 +116,7 @@ export default function Page() {
     }
   };
   return (
-    <main className="flex w-full  flex-col items-center pt-10 p-2">
+    <main className="flex w-full  flex-col items-center pt-0 p-2">
       <h1 className="text-2xl text-green-900 font-bold mb-6">Add Hadith</h1>
       <form
         className="flex flex-wrap justify-between w-full mb-4 border-solid  p-6 rounded-md shadow-xl  bg-white/75"
@@ -130,7 +130,7 @@ export default function Page() {
         required
       >
         <option disabled value="">
-          Select a book
+          Kitobni tanlang
         </option>
         {loadingBooks ? (
           <option>Loading books...</option>
@@ -152,7 +152,7 @@ export default function Page() {
         required
       >
         <option disabled value="">
-          Select a chapter
+          Bo&apos;limni tanlang
         </option>
         {loadingChapters ? (
           <option>Loading chapters...</option>
@@ -208,7 +208,7 @@ export default function Page() {
         />
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-          placeholder="Ozbekcha Hadis matni"
+          placeholder="O'zbekcha Hadis matni"
           name="hadithUzbek"
           value={formData.hadithUzbek}
           onChange={handleChange}
@@ -222,18 +222,19 @@ export default function Page() {
         ></textarea>
         <textarea
           className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
-          placeholder="Arabcha Hadis matni"
-          name="hadithArabic"
-          value={formData.hadithArabic}
-          onChange={handleChange}
-        ></textarea>
-        <textarea
-          className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           placeholder="Inglizcha Hadis matni"
           name="hadithEnglish"
           value={formData.hadithEnglish}
           onChange={handleChange}
         ></textarea>
+        <textarea
+          className="w-full textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+          placeholder="Arabcha Hadis matni"
+          name="hadithArabic"
+          value={formData.hadithArabic}
+          onChange={handleChange}
+        ></textarea>
+        
         {/* <input
           type="number"
           placeholder="Bolim raqami"

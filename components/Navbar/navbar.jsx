@@ -1,12 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { RiAdminFill } from "react-icons/ri";
 
 const Navbar = () => {
   return (
     <div className="navbar bg-green-500 fixed z-10">
       <div className="navbar-start">
-        <Link href="/" className="btn btn-ghost text-xl text-white font-serif">ZIS-Hadis</Link>
+        <Link href="/" className="btn btn-ghost text-xl text-white font-serif">
+        <Image src="/logo.png" width={60} height={60}/>
+        </Link>
       </div>
       <div className="navbar-center">
         {/* <a className="btn btn-ghost text-xl text-green-800">ZIS-Hadis</a> */}

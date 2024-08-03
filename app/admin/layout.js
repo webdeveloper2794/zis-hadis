@@ -4,7 +4,7 @@ const Adminlayout = ({ children }) => {
   return (
 
     <AdminLayout>
-        <main className="flex-1  bg-gray-100/50 relative">
+        <main className=" w-full flex flex-1 relative">
           {children}
         </main>
     </AdminLayout>

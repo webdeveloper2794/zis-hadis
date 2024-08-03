@@ -18,7 +18,6 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-
   background: url('/background.svg');
   background-size: cover;
   background-attachment: fixed;
@@ -27,5 +26,24 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Scrollbar Styles */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: red;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: white;
   }
 }
