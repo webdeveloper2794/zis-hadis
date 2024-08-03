@@ -71,7 +71,7 @@ export default function Page() {
     fetchBooks();
   }, []);
   return (
-    <main className="flex w-full  flex-col items-center pt-10 p-2">
+    <main className="flex w-full  flex-col items-center pt-0 p-2">
       <h1 className="text-2xl text-green-900 font-bold mb-6">Add Chapter</h1>
       <form
         className="flex flex-wrap justify-between w-full mb-4 border-solid  p-6 rounded-md shadow-xl  bg-white/75"
@@ -96,21 +96,21 @@ export default function Page() {
         </select>
         <input
           type="text"
-          placeholder="Bo\'lim raqami"
+          placeholder="Bo'lim raqami"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           value={chapterNumber}
           onChange={handleChapterChange}
         />
         <input
           type="text"
-          placeholder="Bo\'lim nomi o\'zbekcha"
+          placeholder="Bo'lim nomi o'zbekcha"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           value={titleUz}
           onChange={handleUzTitleChange}
         />
         <input
           type="text"
-          placeholder="Bo\'lim nomi arabcha"
+          placeholder="Bo'lim nomi arabcha"
           className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
           value={titleAr}
           onChange={handleArTitleChange}
