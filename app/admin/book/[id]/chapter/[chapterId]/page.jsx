@@ -103,7 +103,7 @@ export default function Page({ params }) {
     >
       <div className="w-full min-w-xs m-2">
         <label className="block text-green-900 font-bold mb-2" htmlFor="chapterNumber">
-          Bo'lim raqami
+          Bo&apos;lim raqami
         </label>
         <input
           id="chapterNumber"
@@ -116,7 +116,7 @@ export default function Page({ params }) {
       </div>
       <div className="w-full min-w-xs m-2">
         <label className="block text-green-900 font-bold mb-2" htmlFor="titleUz">
-          Bo'lim nomi o'zbekcha
+          Bo&apos;lim nomi o&apos;zbekcha
         </label>
         <input
           id="titleUz"
@@ -129,7 +129,7 @@ export default function Page({ params }) {
       </div>
       <div className="w-full min-w-xs m-2">
         <label className="block text-green-900 font-bold mb-2" htmlFor="titleAr">
-          Bo'lim nomi arabcha
+          Bo&apos;lim nomi arabcha
         </label>
         <input
           id="titleAr"
