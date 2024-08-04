@@ -4,7 +4,6 @@ import Link from "next/link";
 import axios from "axios";
 
 const  Books = ({ books }) => {
-    console.log('%c%s', 'color: #f200e2', JSON.stringify(books));
     // const [books, setBooks] = useState([]);
     // const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

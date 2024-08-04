@@ -28,7 +28,6 @@ const Page = ({ params }) => {
         try {
             if (chapterId && hadithId) {
                 const response = await axios.get(`/api/hadiths/${hadithId}`);
-                console.log('%c%s', 'color: #007300', JSON.stringify(response.data.hadith));
                 const responseChapter = await axios.get(`/api/chapters/${chapterId}`);
                 const chapter = responseChapter.data.chapter;
                 setChapter(chapter);

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FiMenu, FiHome, FiBook, FiLayers, FiClipboard, FiAlertCircle,FiArrowLeft  } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
+import LogoutButton from "../LogOutButton/logoutBtn";
 const AdminLayout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -97,6 +98,7 @@ const AdminLayout = ({ children }) => {
               <span>{link.label}</span>
             </Link>
           ))}
+          <LogoutButton/>
         </nav>
       </aside>
 

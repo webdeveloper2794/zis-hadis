@@ -15,7 +15,6 @@ export default function Page() {
 
   const handleUzTitleChange = (e) => {
     setTitleUz(e.target.value);
-    console.log(titleUz);
   };
   const handleArTitleChange = (e) => {
     setTitleAr(e.target.value);

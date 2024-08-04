@@ -33,7 +33,7 @@ const Page = ({ params }) => {
         hadithArTitle: "",
         hadithId: ""
     });
-    console.log('%c%s', 'color: #807160', JSON.stringify(pathname));
+   
     const { id, chapterId } = params;
 
     const fetchHadiths = async () => {

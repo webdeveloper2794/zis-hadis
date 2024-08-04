@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server'; // Next.js response utility
 // Handler for GET request to fetch a single hadith by ID
 export async function GET(request, { params }) {
   const { id } = params; // Extract the hadithId from the request parameters
-  console.log('%c%s', 'color: #1d5673', params);
   await connectMongoDB(); // Connect to the MongoDB database
 
   try {
