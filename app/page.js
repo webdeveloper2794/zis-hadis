@@ -48,7 +48,7 @@ export default function Home() {
         backgroundSize: "cover",
         backgroundAttachment: "fixed"
       }}>
-      <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">Rosululloh <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span> Hadislari to'plami</h1>
+      <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">Rosululloh <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span> Hadislari to&apos;plami</h1>
 
       <form onSubmit={handleSearch} className="input input-bordered flex items-center gap-2 bg-green-100 shadow-xl input-accent w-full lg:w-1/2 ">
         <input 
@@ -76,7 +76,6 @@ export default function Home() {
       {error && <p className="text-green-700">Error: {error.message}</p>}
       {searchQuery && hadiths.length > 0 ? (
         <HadithPageComponent hadiths={hadiths} />
-        // <h1 className="text-black">fetched</h1>
       ) : (
         <Books books={books} />
       )}
