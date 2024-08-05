@@ -4,7 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
-
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 export default function Page() {
   const [books, setBooks] = useState([]);
@@ -87,9 +87,11 @@ export default function Page() {
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
-                            <img
+                            <Image
                               src="https://images.unsplash.com/photo-1491841651911-c44c30c34548?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                               alt="Avatar Tailwind CSS Component"
+                              width={50}
+                              height={50}
                             />
                           </div>
                         </div>
@@ -126,14 +128,14 @@ export default function Page() {
                       </button>
                     </td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">
+                      
                         <button
                           onClick={() => handleRemove(book._id)}
-                          className=" text-red-500 hover:text-red-700"
+                          className="btn btn-ghost btn-xs text-red-500 hover:text-red-700"
                         >
                           <MdDeleteSweep className="text-xl" />
                         </button>
-                      </button>
+                  
                     </th>
                   </tr>
                 ))}

@@ -32,8 +32,8 @@ const  Books = ({ books }) => {
         <div className="container mx-auto xl:px-40 py-10 ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {books && books.map(book => (
-                    <Link key={book.id}  href={`/books/${book._id}`}>
-                        <div className="relative group">
+                    <Link key={book._id}  href={`/books/${book._id}`}>
+                        <div className="relative group" key={book.id}>
                             <div
                                 className="flex justify-between items-center p-2 bg-white border hover:border-2  rounded-sm shadow-lg cursor-pointer transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-lg px-10"
                                 onClick={() => handleBookClick(book.id)}

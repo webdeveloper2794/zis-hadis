@@ -87,7 +87,7 @@ const AdminLayout = ({ children }) => {
       {/* Sidebar for medium and larger screens */}
       <aside className="hidden md:flex flex-col bg-green-100 w-64 min-h-screen pt-16">
         <div className="text-lg font-bold text-green-700 tracking-wider p-4 fixed font-sans pl-8 w-52">Admin Panel</div>
-        <nav className="flex flex-col space-y-4 p-4 pt-16 text-slate-600 fixed">
+        <nav className="flex flex-col justify-between  space-y-4 p-4 pt-16 text-slate-600 fixed">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -98,7 +98,8 @@ const AdminLayout = ({ children }) => {
               <span>{link.label}</span>
             </Link>
           ))}
-          <LogoutButton/>
+        <LogoutButton/>
+          
         </nav>
       </aside>
 

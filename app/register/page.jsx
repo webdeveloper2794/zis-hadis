@@ -4,9 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 export default function Register() {
+  
   const router = useRouter(); // Hook to programmatically navigate the user
   const [email, setEmail] = useState(""); // State to store the email
   const [password, setPassword] = useState(""); // State to store the password

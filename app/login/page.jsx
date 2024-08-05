@@ -6,22 +6,27 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
+
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/login", { email, password }, { withCredentials: true });
+      const response = await axios.post(
+        "/api/login",
+        { email, password },
+        { withCredentials: true }
+      );
 
       if (response.status === 200) {
         toast.success("Login successful!");
-
-            router.push("/"); // Redirect to home page for regular users
+        router.push("/admin"); // Redirect to home page for regular users
       }
     } catch (error) {
       toast.error(error.response?.data?.error || "Login failed!");
@@ -65,7 +70,12 @@ export default function Login() {
         </button>
       </form>
       <button className="btn btn-success btn-outline group">
-      <Link href="/register" className="text-gray-800 group-hover:text-white ">Register</Link>
+        <Link
+          href="/register"
+          className="text-gray-800 group-hover:text-white "
+        >
+          Register
+        </Link>
       </button>
     </main>
   );
