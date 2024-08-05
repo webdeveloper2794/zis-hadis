@@ -60,7 +60,7 @@ const AdminLayout = ({ children }) => {
       {/* Navbar for small screens */}
       <header className="bg-green-100 w-full text-gray-700 py-4 fixed z-50 md:hidden">
         <div className="container mx-auto flex justify-between items-center px-2">
-          <div className="text-lg font-semibold text-gray-400 tracking-wider text-green-700">Admin Panel</div>
+          <div className="text-lg font-semibold tracking-wider text-green-700">Admin Panel</div>
           <button onClick={toggleMenu} className="text-xl group">
             <FiMenu className="group-hover:text-green-500 transition-all" />
           </button>
