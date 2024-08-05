@@ -1,46 +1,40 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Books from "@/components/Books/books";
+import { useRouter,useSearchParams  } from "next/navigation";
 import HadithPageComponent from "@/components/Hadith/Hadith";
-import { useRouter } from "next/navigation";
-// import Hadiths from "@/components/Hadiths/hadiths"; // Import the Hadiths component
+import { Suspense } from 'react'
 
-export default function Home() {
+export default function HadithPage() {
   const router = useRouter();
-  const [books, setBooks] = useState([]);
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
+  console.log('%c%s', 'color: #ff0000', search);
+
+
   const [hadiths, setHadiths] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(search || "");
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get("/api/books");
-        setBooks(response.data.books);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
+    const fetchHadiths = async () => {
+      if (search) {
+        setLoading(true);
+        try {
+          const response = await axios.get(`/api/search?searchQuery=${encodeURIComponent(search)}`);
+          setHadiths(response.data.hadiths);
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+          setLoading(false);
+        }
       }
     };
 
-    fetchBooks();
-  }, []);
+    fetchHadiths();
+  }, [search]);
 
-  // const handleSearch = async (event) => {
-  //   event.preventDefault();
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.get(`/api/search?searchQuery=${encodeURIComponent(searchQuery)}`);
-  //     setHadiths(response.data.hadiths);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     setError(error);
-  //     setLoading(false);
-  //   }
-  // };
   const handleSearch = (event) => {
     event.preventDefault();
     if (searchQuery.trim()) {
@@ -58,15 +52,9 @@ export default function Home() {
         backgroundAttachment: "fixed",
       }}
     >
-      <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">
-        Rosululloh{" "}
-        <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span>{" "}
-        Hadislari to&apos;plami
-      </h1>
-
-      <form
+      {/* <form
         onSubmit={handleSearch}
-        className="input input-bordered flex items-center gap-2 bg-green-100 shadow-xl input-accent w-full lg:w-1/2 "
+        className="input input-bordered flex items-center gap-2 bg-green-100 shadow-xl input-accent w-full lg:w-1/2"
       >
         <input
           type="text"
@@ -89,16 +77,23 @@ export default function Home() {
             />
           </svg>
         </button>
-      </form>
+      </form> */}
 
       {loading && <p className="text-green-700">Loading...</p>}
       {error && <p className="text-green-700">Error: {error.message}</p>}
 
-      {searchQuery && hadiths.length > 0 ? (
+      {searchQuery && hadiths.length > 0 && (
         <HadithPageComponent hadiths={hadiths} searchTerm={searchQuery} />
-      ) : (
-        <Books books={books} />
       )}
     </main>
   );
 }
+
+export function Hadith() {
+    return (
+      // You could have a loading skeleton as the `fallback` too
+      <Suspense>
+        <HadithPage />
+      </Suspense>
+    )
+  }

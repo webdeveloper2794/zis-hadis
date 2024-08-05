@@ -58,7 +58,7 @@ const AdminLayout = ({ children }) => {
   return (
     <div className="w-full min-h-screen flex justify-between pt-16 md:pt-2 p-0">
       {/* Navbar for small screens */}
-      <header className="bg-green-100 w-full text-gray-700 py-4 fixed z-50 md:hidden">
+      <header className="bg-slate-100 w-full text-gray-700 py-4 fixed z-50 md:hidden">
         <div className="container mx-auto flex justify-between items-center px-2">
           <div className="text-lg font-semibold tracking-wider text-green-700">Admin Panel</div>
           <button onClick={toggleMenu} className="text-xl group">
@@ -85,7 +85,7 @@ const AdminLayout = ({ children }) => {
       </header>
 
       {/* Sidebar for medium and larger screens */}
-      <aside className="hidden md:flex flex-col bg-green-100 w-64 min-h-screen pt-16">
+      <aside className="hidden md:flex flex-col bg-green-50 w-64 min-h-screen pt-16">
         <div className="text-lg font-bold text-green-700 tracking-wider p-4 fixed font-sans pl-8 w-52">Admin Panel</div>
         <nav className="flex flex-col justify-between  space-y-4 p-4 pt-16 text-slate-600 fixed">
           {links.map((link) => (

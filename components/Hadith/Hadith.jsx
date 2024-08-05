@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaCopy } from "react-icons/fa6";
 import { toast } from "react-toastify";
 
-const HadithPageComponent = ({ hadiths }) => {
+const HadithPageComponent = ({ hadiths, searchTerm }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedLanguages, setSelectedLanguages] = useState({
         uzbek: false,
@@ -44,6 +44,16 @@ const HadithPageComponent = ({ hadiths }) => {
         });
     };
 
+    const highlightSearchTerm = (text, searchTerm) => {
+        if (!searchTerm) return text;
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        return text.split(regex).map((part, index) => 
+            part.toLowerCase() === searchTerm.toLowerCase() ? 
+                <span key={index} className="bg-green-300">{part}</span> : 
+                part
+        );
+    };
+
     return (
         <div className='text-4xl text-slate-900 text-center min-h-screen pt-20 w-full p-4 md:p-10 md:pt-20 max-w-screen-lg m-auto'>
             {hadiths.map((hadith) => (
@@ -78,7 +88,7 @@ const HadithPageComponent = ({ hadiths }) => {
                                             <input type="radio" name={`my_tabs_1`} role="tab" className="tab text-gray-800" aria-label="O'zbekcha" defaultChecked />
                                             <div role="tabpanel" className="tab-content p-2">
                                                 <p className='text-sm md:text-sm text-justify'>
-                                                    {hadith.hadith.uzbek}
+                                                    {highlightSearchTerm(hadith.hadith.uzbek, searchTerm)}
                                                 </p>
                                             </div>
                                         </>
@@ -88,7 +98,7 @@ const HadithPageComponent = ({ hadiths }) => {
                                             <input type="radio" name={`my_tabs_1`} role="tab" className="tab" aria-label="Узбекча" />
                                             <div role="tabpanel" className="tab-content p-2">
                                                 <p className='text-sm text-justify'>
-                                                    {hadith.hadith.kril}
+                                                    {highlightSearchTerm(hadith.hadith.kril, searchTerm)}
                                                 </p>
                                             </div>
                                         </>
@@ -98,7 +108,7 @@ const HadithPageComponent = ({ hadiths }) => {
                                             <input type="radio" name={`my_tabs_1`} role="tab" className="tab" aria-label="English" />
                                             <div role="tabpanel" className="tab-content p-2">
                                                 <p className='text-sm text-justify'>
-                                                    {hadith.hadith.english}
+                                                    {highlightSearchTerm(hadith.hadith.english, searchTerm)}
                                                 </p>
                                             </div>
                                         </>
@@ -108,7 +118,7 @@ const HadithPageComponent = ({ hadiths }) => {
                                     <>
                                         <div className='p-2 max-w-[40rem] w-full  md:w-1/2 pt-10 flex flex-col'>
                                             <p className='text-lg text-justify ' style={{ textAlignLast: "right" }}>
-                                                {hadith.hadith.arabic}
+                                                {highlightSearchTerm(hadith.hadith.arabic, searchTerm)}
                                             </p>
                                         </div>
                                     </>

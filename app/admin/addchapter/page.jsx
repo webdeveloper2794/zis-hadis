@@ -71,7 +71,7 @@ export default function Page() {
   }, []);
   return (
     <main className="flex w-full  flex-col items-center pt-0 p-2">
-      <h1 className="text-2xl text-green-900 font-bold mb-6">Add Chapter</h1>
+      <h1 className="text-2xl text-green-900 font-bold mb-6">Bo&apos;lim Qo&apos;shish</h1>
       <form
         className="flex flex-wrap justify-between w-full mb-4 border-solid  p-6 rounded-md shadow-xl  bg-white/75"
         onSubmit={handleChapterSubmit}
