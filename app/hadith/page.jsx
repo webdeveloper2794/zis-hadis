@@ -7,8 +7,10 @@ import { Suspense } from 'react'
 
 export default function HadithPage() {
   const router = useRouter();
-  const searchParams = useSearchParams()
-  const search = searchParams.get('search')
+  // const searchParams = useSearchParams();
+  const searchParams = 45;
+  const search = 45;
+  // const search = 'search';
   console.log('%c%s', 'color: #ff0000', search);
 
 
@@ -35,12 +37,12 @@ export default function HadithPage() {
     fetchHadiths();
   }, [search]);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/hadith?search=${encodeURIComponent(searchQuery)}`);
-    }
-  };
+  // const handleSearch = (event) => {
+  //   event.preventDefault();
+  //   if (searchQuery.trim()) {
+  //     router.push(`/hadith?search=${encodeURIComponent(searchQuery)}`);
+  //   }
+  // };
 
   return (
     <main

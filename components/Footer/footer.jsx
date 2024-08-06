@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 const Footer = () => {
   return (
-    <footer className="footer flex  justify-between bg-green-500 text-neutral-content items-center p-2">
+    <footer className="footer flex  justify-between bg-green-500/0  text-neutral-content items-center p-2">
       <aside className="grid-flow-col items-center">
         <svg
           width="16"

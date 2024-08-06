@@ -6,7 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-export default function Page() {
+
+export default function AdminPage() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -111,13 +112,7 @@ export default function Page() {
                         >
                           Bo&apos;limlar
                         </Link>
-                      </button>
-                      {/* <Link
-                          href={`/admin/book/${book._id}/chapter`}
-                          className="text-green-500 "
-                        >
-                          Manage Chapters
-                        </Link> */}
+                      </button>                     
                     </td>
                     <td>
                       <button
@@ -143,52 +138,7 @@ export default function Page() {
           </table>
         </div>
 
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-700">
-          {books &&
-            books.map((book) => (
-              <div
-                key={book._id}
-                className="bg-white p-4 rounded shadow flex flex-col justify-between"
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h2 className="text-lg font-semibold">
-                      {book.title_arabic}
-                    </h2>
-                    <h2 className="text-lg font-semibold">{book.title_uzb}</h2>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <div className="lg:tooltip" data-tip="Edit">
-                      <button
-                        onClick={() => handleEdit(book._id)}
-                        className=" text-green-500 hover:text-green-700"
-                      >
-                        <FaEdit className="text-lg" />
-                      </button>
-                    </div>
-
-                    <div className="lg:tooltip" data-tip="Remove">
-                      <button
-                        onClick={() => handleRemove(book._id)}
-                        className=" text-red-500 hover:text-red-700"
-                      >
-                        <MdDeleteSweep className="text-xl" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    href={`/admin/book/${book._id}/chapter`}
-                    className="text-green-500 hover:underline"
-                  >
-                    Manage Chapters
-                  </Link>
-                </div>
-              </div>
-            ))}
-        </div> */}
+        
       </div>
     </>
   );

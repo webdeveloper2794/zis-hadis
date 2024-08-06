@@ -56,7 +56,7 @@ const HadithPageComponent = ({ hadiths, searchTerm }) => {
 
     return (
         <div className='text-4xl text-slate-900 text-center min-h-screen pt-20 w-full p-4 md:p-10 md:pt-20 max-w-screen-lg m-auto'>
-            {hadiths.map((hadith) => (
+            {hadiths && hadiths.map((hadith) => (
                 <div key={hadith._id}>
                     {hadith.subChapterNumber && (
                         <section className='flex flex-wrap justify-between my-4'>

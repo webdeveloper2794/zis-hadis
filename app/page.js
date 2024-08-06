@@ -4,7 +4,7 @@ import axios from "axios";
 import Books from "@/components/Books/books";
 import HadithPageComponent from "@/components/Hadith/Hadith";
 import { useRouter } from "next/navigation";
-// import Hadiths from "@/components/Hadiths/hadiths"; // Import the Hadiths component
+import { Suspense } from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -49,6 +49,7 @@ export default function Home() {
   };
 
   return (
+    <Suspense fallback={<p className="text-green-700 text-center flex"><span className="loading loading-spinner text-success loading-lg m-2"></span>Loading...</p>}>
     <main
       className="flex w-full min-h-screen flex-col items-center bg-[#ebfcef] pt-16 p-6"
       style={{
@@ -100,5 +101,6 @@ export default function Home() {
         <Books books={books} />
       )}
     </main>
+  </Suspense>
   );
 }

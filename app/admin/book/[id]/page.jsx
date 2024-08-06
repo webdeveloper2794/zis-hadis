@@ -1,10 +1,11 @@
 "use client"
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 //Kitob update sahifasi
 export default function Page({ params }) {
   const {id} = params;
+  const router = useRouter();
   const [titleUz, setTitleUz] = useState("");
   const [titleAr, setTitleAr] = useState("");
   const [author, setAuthor] = useState("");
@@ -55,6 +56,7 @@ export default function Page({ params }) {
       const response = await axios.put('/api/books', updatedBook);
       if (response.status === 200) {
         alert('Kitob muvaffaqiyatli yangilandi!');
+        router.back();
        
       }
     } catch (error) {
@@ -62,39 +64,47 @@ export default function Page({ params }) {
     }
   };
   return (
-    <main className="flex w-full  flex-col items-center pt-10 p-2">
-      <h1 className="text-2xl text-green-900 font-bold mb-6">Kitobni Tahrirlash</h1>
-      <form className="flex flex-wrap justify-between w-full mb-4 border-solid  p-6 rounded-md shadow-xl  bg-white/75" onSubmit={handleUpdateBookSubmit}>
+    <main className="flex w-full flex-col items-center pt-10 p-2">
+    <h1 className="text-2xl text-green-900 font-bold mb-6">Kitobni Tahrirlash</h1>
+    <form className="flex flex-wrap justify-between w-full mb-4 border-solid p-6 rounded-md shadow-xl bg-white/75" onSubmit={handleUpdateBookSubmit}>
+      <label className="w-full m-2">
+        <span className="text-green-900">Kitob nomi o&apos;zbekcha</span>
         <input
           type="text"
-          placeholder="Kitob nomi ozbekcha"
-          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 mt-1"
           value={titleUz}
           onChange={handleUzTitleChange}
         />
+      </label>
+      <label className="w-full m-2">
+        <span className="text-green-900">Kitob nomi arabcha</span>
         <input
           type="text"
-          placeholder="Kitob nomi arabcha"
-          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 mt-1"
           value={titleAr}
           onChange={handleArTitleChange}
         />
+      </label>
+      <label className="w-full m-2">
+        <span className="text-green-900">Kitob Muallifi</span>
         <input
           type="text"
-          placeholder="Kitob Muallifi"
-          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+          className="input input-bordered input-accent w-full min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 mt-1"
           value={author}
           onChange={handleAuthorChange}
         />
+      </label>
+      <label className="w-full m-2">
+        <span className="text-green-900">Kitob Biografiyasi</span>
         <textarea
-          className="textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 w-full m-2"
-          placeholder="Kitob Biografiyasini qo'shing"
+          className="textarea textarea-success bg-transparent focus:border-2 focus:outline-none text-green-900 w-full mt-1"
           value={bio}
           onChange={handleBioChange}
         ></textarea>
-        <button className="shadow-lg m-2 btn btn-outline btn-success bg-green-500" style={{ color: "white" }} type="submit">Saqlash</button>
-      </form>      
-    </main>
+      </label>
+      <button className="shadow-lg m-2 btn btn-outline btn-success bg-green-500" style={{ color: "white" }} type="submit">Saqlash</button>
+    </form>
+  </main>
   );
 }
 

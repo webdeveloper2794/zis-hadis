@@ -9,14 +9,16 @@ import { useRouter,useSearchParams  } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
-  const searchParams = useSearchParams()
-  const search = searchParams.get('search')
+  // const searchParams = useSearchParams();
+  const searchParams = 44;
+  const search = 45;
   const [searchQuery, setSearchQuery] = useState(search || "");
 
   const handleSearch = (event) => {
     event.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/hadith?search=${encodeURIComponent(searchQuery)}`);
+    const trimmedSearchQuery = searchQuery.trim();
+    if (trimmedSearchQuery) {
+      router.push(`/hadith?search=${encodeURIComponent(trimmedSearchQuery)}`);
     }
   };
 
@@ -26,20 +28,19 @@ const Navbar = () => {
   console.log(isAdmin);
 
   return (
-    <div className="navbar bg-green-500 fixed z-10">
+    <div className="flex items-center navbar bg-green-500  backdrop-blur-sm p-0 fixed z-10">
       <div className="navbar-start">
-        <Link href="/" className="btn btn-ghost text-xl text-white font-serif">
-          <Image src="/logo.png" alt="logo" width={60} height={60} />
+        <Link href="/" className="flex items-center md:pl-10">
+          <Image src="/logo2.png" alt="logo" width={60} height={60} />
+          {/* <span className="text-xl font-sans font-thin text-green-600">ZIS-Hadis.com</span> */}
         </Link>
       </div>
-      <div className="navbar-center">
-        
-      </div>
+      
       <div className="navbar-end">
-      <form onSubmit={handleSearch} className="flex items-center gap-2">
+      <form onSubmit={handleSearch} className="flex items-center gap-1">
           <input
             type="text"
-            className="input input-bordered input-sm text-green-900 focus:outline-none"
+            className="input  input-sm text-green-900 focus:outline-none"
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
