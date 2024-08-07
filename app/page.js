@@ -41,6 +41,8 @@ export default function Home() {
   //     setLoading(false);
   //   }
   // };
+
+  
   const handleSearch = (event) => {
     event.preventDefault();
     if (searchQuery.trim()) {
