@@ -248,7 +248,7 @@ const Page = ({ params }) => {
                                             </p>
                                         )}
 
-                                        {hadith.hadithNumber && (
+                                        {(hadith.hadithNumber || hadith.hadithNumber > 0) && (
                                             <p className='text-xs text-left text-green-900'>
                                                 {hadith.hadithNumber}-hadis
                                             </p>
