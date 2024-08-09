@@ -5,6 +5,7 @@ import Books from "@/components/Books/books";
 import HadithPageComponent from "@/components/Hadith/Hadith";
 import { useRouter } from "next/navigation";
 import { Suspense } from "react";
+import Head from "next/head";
 
 export default function Home() {
   const router = useRouter();
@@ -42,7 +43,6 @@ export default function Home() {
   //   }
   // };
 
-  
   const handleSearch = (event) => {
     event.preventDefault();
     if (searchQuery.trim()) {
@@ -51,58 +51,65 @@ export default function Home() {
   };
 
   return (
-    <Suspense fallback={<p className="text-green-700 text-center flex"><span className="loading loading-spinner text-success loading-lg m-2"></span>Loading...</p>}>
-    <main
-      className="flex w-full min-h-screen flex-col items-center bg-[#ebfcef] pt-16 p-6"
-      style={{
-        background: `url("/background.svg")`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
+    <Suspense
+      fallback={
+        <p className="text-green-700 text-center flex">
+          <span className="loading loading-spinner text-success loading-lg m-2"></span>
+          Loading...
+        </p>
+      }
     >
-      <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center">
-        Rosululloh{" "}
-        <span className="text-gray-900 font-bold">صلى الله عليه و سلم</span>{" "}
-        Hadislari to&apos;plami
-      </h1>
-
-      <form
-        onSubmit={handleSearch}
-        className="input input-bordered flex items-center gap-2 bg-green-100 shadow-xl input-accent w-full lg:w-1/2 "
+      <main
+        className="flex w-full min-h-screen flex-col items-center bg-[#ebfcef] pt-16 p-6"
+        style={{
+          background: `url("/background.svg")`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+        }}
       >
-        <input
-          type="text"
-          className="grow input-bordered input-accent input-sm text-green-900"
-          placeholder="Search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button type="submit" className="flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            fill="green"
-            className="h-4 w-4 opacity-70"
-          >
-            <path
-              fillRule="evenodd"
-              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </form>
+        <h1 className="text-2xl sm:text-4xl text-green-700 py-10 font-serif text-center flex items-center title-main">
+          Rosululloh{" "}
+          <span className=" font-bold text-5xl px-2"> ﷺ </span>{" "}
+          Hadislari to&apos;plami
+        </h1>
 
-      {loading && <p className="text-green-700">Loading...</p>}
-      {error && <p className="text-green-700">Error: {error.message}</p>}
+        <form
+          onSubmit={handleSearch}
+          className="input input-bordered flex items-center gap-2 bg-green-100 shadow-xl input-accent w-full lg:w-1/2 "
+        >
+          <input
+            type="text"
+            className="grow input-bordered input-accent input-sm text-green-900"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button type="submit" className="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="green"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </form>
 
-      {searchQuery && hadiths.length > 0 ? (
-        <HadithPageComponent hadiths={hadiths} searchTerm={searchQuery} />
-      ) : (
-        <Books books={books} />
-      )}
-    </main>
-  </Suspense>
+        {loading && <p className="text-green-700">Loading...</p>}
+        {error && <p className="text-green-700">Error: {error.message}</p>}
+
+        {searchQuery && hadiths.length > 0 ? (
+          <HadithPageComponent hadiths={hadiths} searchTerm={searchQuery} />
+        ) : (
+          <Books books={books} />
+        )}
+      </main>
+    </Suspense>
   );
 }

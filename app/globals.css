@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -15,7 +15,11 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+.title-main{
+  font-family: "Mate SC", serif;
+  font-weight: 900;
+  font-style: normal;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: url('/background.svg');
@@ -53,3 +57,4 @@ body {
   }
 
 }
+

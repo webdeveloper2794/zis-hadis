@@ -8,8 +8,8 @@ import { Suspense } from 'react'
 export default function HadithPage() {
   const router = useRouter();
   // const searchParams = useSearchParams();
-  const searchParams = 45;
-  const search = 45;
+  // const searchParams = 45;
+  const search = '';
   // const search = 'search';
   console.log('%c%s', 'color: #ff0000', search);
 

@@ -11,14 +11,15 @@ export default function Page({ params }) {
   const [formData, setFormData] = useState({
     titleUz: "",
     titleAr: "",
-    subChapterNumber: null,
+    subChapterNumber: "",
     arabicAyah: "",
     narratorName: "",
     hadithArabic: "",
     hadithUzbek: "",
     hadithEnglish: "",
     hadithKril: "",
-    hadithNumber: null,
+    hadithNumber: "",
+    orderNumber: "",
     reference: "",
     accuracy: "",
     source: "",
@@ -50,6 +51,7 @@ export default function Page({ params }) {
           hadithEnglish: hadith.hadith.english,
           hadithKril: hadith.hadith.kril,
           hadithNumber: hadith.hadithNumber,
+          orderNumber: hadith.orderNumber,
           reference: hadith.reference,
           accuracy: hadith.accuracy,
           source: hadith.source,
@@ -81,6 +83,7 @@ export default function Page({ params }) {
         kril: formData.hadithKril,
       },
       hadithNumber: Number(formData.hadithNumber),
+      orderNumber: Number(formData.orderNumber),
       reference: formData.reference,
       accuracy: formData.accuracy,
       source: formData.source,
@@ -236,6 +239,19 @@ export default function Page({ params }) {
             value={formData.hadithNumber}
             onChange={handleChange}
           />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-gray-500">Tartib raqami</span>
+          </div>
+          <input
+          type="number"
+          placeholder="Tartib raqami"
+          className="input input-bordered input-accent  min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+          name="orderNumber"
+          value={formData.orderNumber}
+          onChange={handleChange}
+        />
         </label>
         <label class="form-control w-full">
           <div class="label">

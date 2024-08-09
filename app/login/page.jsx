@@ -25,8 +25,9 @@ export default function Login() {
       );
 
       if (response.status === 200) {
+        router.push("/admin");
         toast.success("Login successful!");
-        router.push("/admin"); // Redirect to home page for regular users
+         // Redirect to home page for regular users
       }
     } catch (error) {
       toast.error(error.response?.data?.error || "Login failed!");

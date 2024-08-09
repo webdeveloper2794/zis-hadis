@@ -63,6 +63,10 @@ const HadithSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    orderNumber: {
+      type: Number,
+      required: false,
+    },
   },
   {
     timestamps: true, // This will add createdAt and updatedAt fields

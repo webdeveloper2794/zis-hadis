@@ -23,14 +23,14 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   const { id } = params; // Extract the hadithId from the request parameters
   // Extract the hadith data from the request body
-  const { chapterId, subChapterNumber, subChapterTitle, arabic_ayah, narratorName, hadith, hadithNumber, reference, accuracy, source } = await request.json();
+  const { chapterId, subChapterNumber, subChapterTitle, arabic_ayah, narratorName, hadith, hadithNumber, orderNumber,reference, accuracy, source } = await request.json();
   await connectMongoDB(); // Connect to the MongoDB database
 
   try {
     // Update the hadith in the database by ID and return the updated hadith
     const updatedHadith = await Hadith.findByIdAndUpdate(
       id, // The ID of the hadith to update
-      { chapterId, subChapterNumber, subChapterTitle, arabic_ayah, narratorName, hadith, hadithNumber, reference, accuracy, source }, // The new hadith data
+      { chapterId, subChapterNumber, subChapterTitle, arabic_ayah, narratorName, hadith, hadithNumber,orderNumber, reference, accuracy, source }, // The new hadith data
       { new: true, runValidators: true } // Options to return the updated document and run validation
     );
 

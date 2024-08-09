@@ -6,14 +6,15 @@ export default function Page() {
   const [formData, setFormData] = useState({
     titleUz: "",
     titleAr: "",
-    subChapterNumber: null,
+    subChapterNumber: "",
     arabicAyah: "",
     narratorName: "",
     hadithArabic: "",
     hadithUzbek: "",
     hadithEnglish: "",
     hadithKril: "",
-    hadithNumber: null,
+    hadithNumber: "",
+    orderNumber: "",
     reference: "",
     accuracy: "",
     source: "",
@@ -85,6 +86,7 @@ export default function Page() {
         kril: formData.hadithKril,
       },
       hadithNumber: Number(formData.hadithNumber),
+      orderNumber: Number(formData.orderNumber),
       reference: formData.reference,
       accuracy: formData.accuracy,
       source: formData.source,
@@ -104,6 +106,7 @@ export default function Page() {
           hadithEnglish: "",
           hadithKril: "",
           hadithNumber: "",
+          orderNumber: "",
           reference: "",
           accuracy: "",
           source: "",
@@ -243,6 +246,14 @@ export default function Page() {
           value={formData.subChapterNumber}
           onChange={handleChange}
         /> */}
+         <input
+          type="number"
+          placeholder="Tartib raqami"
+          className="input input-bordered input-accent  min-w-xs bg-transparent focus:border-2 focus:outline-none text-green-900 m-2"
+          name="orderNumber"
+          value={formData.orderNumber}
+          onChange={handleChange}
+        />
         <input
           type="number"
           placeholder="Hadis raqami"

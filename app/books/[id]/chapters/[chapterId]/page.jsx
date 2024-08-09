@@ -158,9 +158,9 @@ const Page = ({ params }) => {
                     </h1>
                     <h1 className='text-xl'>{chapter.title_ar}</h1>
                 </header>
-                {hadiths.sort((a, b) => a.subChapterNumber - b.subChapterNumber).map((hadith, index) => (
+                {hadiths.sort((a, b) => a.orderNumber - b.orderNumber).map((hadith, index) => (
                     <div key={hadith._id}>
-                        {hadith.subChapterNumber && (
+                        {(hadith.subChapterNumber || hadith.subChapterNumber > 0) && (
                             <section className='flex flex-wrap justify-between my-4 '>
                                 {hadith.subChapterTitle.uz ? <h1 className='text-base'><span className='m-2'>({hadith.subChapterNumber}).Bob: </span>{hadith.subChapterTitle.uz}</h1> : <h1 className='text-base'>({hadith.subChapterNumber}).Bob: </h1>}
 

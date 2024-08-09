@@ -62,7 +62,7 @@ const Page = ({ params }) => {
           <h1 className="text-xl">{chapter.title_ar}</h1>
         </header>
         {hadiths
-          .sort((a, b) => a.subChapterNumber - b.subChapterNumber)
+          .sort((a, b) => a.orderNumber - b.orderNumber)
           .map((hadith, index) => (
             <div key={hadith._id}>
               <section className="flex justify-between my-4">
@@ -80,16 +80,18 @@ const Page = ({ params }) => {
                   <MdDeleteSweep className="group-hover:text-white" />
                 </button>
               </section>
-              <section className="flex flex-wrap justify-between my-4 ">
-                <h1 className="text-base">
-                  <span className="m-2">{hadith.subChapterNumber}.Bob: </span>
-                  {hadith.subChapterTitle.uz}
-                </h1>
-                <h1 className="text-lg text-right ">
-                  {" "}
-                  {hadith.subChapterTitle.ar} :باب
-                </h1>
-              </section>
+              {hadith.subChapterNumber || hadith.subChapterNumber > 0 && (
+                <section className="flex flex-wrap justify-between my-4">
+                  <h1 className="text-base">
+                    <span className="m-2">{hadith.subChapterNumber}.Bob: </span>
+                    {hadith.subChapterTitle.uz}
+                  </h1>
+                  <h1 className="text-lg text-right">
+                    {hadith.subChapterTitle.ar} :باب
+                  </h1>
+                </section>
+              )}
+
               <section className="flex flex-wrap justify-between my-4">
                 {hadith.arabic_ayah && (
                   <h1 className="text-xl text-right w-full" dir="rtl">
