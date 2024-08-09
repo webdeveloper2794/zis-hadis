@@ -79,7 +79,7 @@ const HadithPageComponent = ({ hadiths, searchTerm }) => {
                     </section>
                     {hadith.hadith && hadith.hadith.arabic && hadith.hadith.uzbek && hadith.hadith.kril && hadith.hadith.english && (
                         <main className='bg-white shadow-xl p-2 text-left w-full rounded-md'>
-                            <p className='text-sm font-semibold text-green-900 p-2'>{hadith.narratorName}dan:</p>
+                            <p className='text-sm font-semibold text-green-900 p-2'>{hadith.narratorName}</p>
 
                             <article className='flex flex-col md:flex-row justify-between items-start gap-2'>
                                 <div role="tablist" className="tabs tabs-boxed bg-white w-full md:w-1/2 max-w-[40rem]">

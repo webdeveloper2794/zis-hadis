@@ -102,7 +102,7 @@ const Page = ({ params }) => {
               </section>
               <main className="bg-white shadow-xl p-2 text-left w-full rounded-md">
                 <p className="text-sm font-semibold text-green-900 p-2">
-                  {hadith.narratorName}dan:
+                  {hadith.narratorName}
                 </p>
 
                 <article className="flex flex-col md:flex-row justify-between items-start gap-2">
@@ -129,7 +129,7 @@ const Page = ({ params }) => {
                       name={`my_tabs_${index}`}
                       role="tab"
                       className="tab"
-                      aria-label="Узбекча"
+                      aria-label="Ўзбекча"
                     />
                     <div role="tabpanel" className="tab-content p-2">
                       <p className="text-sm text-justify">
