@@ -11,7 +11,7 @@ const Navbar = () => {
   const router = useRouter();
   // const searchParams = useSearchParams();
   const searchParams = 44;
-  const search = 45;
+  const search = '';
   const [searchQuery, setSearchQuery] = useState(search || "");
 
   const handleSearch = (event) => {
