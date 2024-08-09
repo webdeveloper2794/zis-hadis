@@ -28,14 +28,14 @@ export async function POST(request) {
   const token = jwt.sign(
     { id: user._id, email: user.email, role: user.role },
     JWT_SECRET,
-    { expiresIn: "1h" }
+    {  expiresIn: "1d" }
   );
 
   // Set token in cookies
   const response = NextResponse.json({ message: "Login successful" });
   response.cookies.set('token', token, {
     httpOnly: true,
-    maxAge: 60 * 60, // 1 hour
+    maxAge: 60 * 60 * 24, // 1 day
   });
 
   return response;
